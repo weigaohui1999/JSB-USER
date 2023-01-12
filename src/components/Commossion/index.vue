@@ -15,6 +15,7 @@ interface commossion {
   phone: string;
   sex: number;
 }
+
 @Component
 export default class Commossion extends Vue {
   @Prop(Object) data!: commossion;

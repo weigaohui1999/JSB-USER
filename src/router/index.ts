@@ -43,6 +43,15 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "progress" */ "../views/Progress/index.vue"),
   },
   {
+    path: "/guide",
+    name: "guide",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "progress" */ "../views/Guide/index.vue"),
+  },
+  {
     path: "*",
     redirect: "/home",
   },

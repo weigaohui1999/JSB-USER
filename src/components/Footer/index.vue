@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <img class="logo" src="@/assets/gft.png" alt="赣服通" />
-    <p class="provider">本服务由皇荒晃出品</p>
+    <p class="provider">本服务由分宜县行政审批局提供</p>
   </div>
 </template>
 

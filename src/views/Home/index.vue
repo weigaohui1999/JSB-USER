@@ -22,43 +22,18 @@
       <van-divider :style="{ padding: '0 12px', fontSize: '16px' }">
         帮办风采
       </van-divider>
-      <div class="graceful">
-        <van-swipe :autoplay="3000" @change="toggleSwipe">
-          <van-swipe-item v-for="(image, index) in swiperList" :key="index">
-            <van-image style="width: 100%" height="200" :src="image" />
-          </van-swipe-item>
-          <template #indicator>
-            <div class="custom-indicator">
-              {{ swiperCurrent + 1 }}/{{ swiperList.length }}
-            </div>
-          </template>
-        </van-swipe>
-        <div class="tags">
-          <van-tag
-            v-for="item in 3"
-            :key="item"
-            class="tag"
-            size="medium"
-            color="#ffe1e1"
-            text-color="#ad0000"
-            plain
-          >
-            标签
-          </van-tag>
-        </div>
-        <div class="desc">
-          在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。
-        </div>
-      </div>
+      <guide />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Guide from "@/components/Guide/index.vue";
 import { Component, Vue } from "vue-property-decorator";
-import { GET_GUIDE_LIST } from "@/api/guide";
 import { MyItemModel } from "./type";
-@Component
+@Component({
+  components: { Guide },
+})
 export default class HomeView extends Vue {
   public data: MyItemModel[] = [
     {
@@ -86,27 +61,9 @@ export default class HomeView extends Vue {
       bgi: require("@/assets/bbjd.png"),
     },
   ];
-  public group = 0;
-  public swiperList: Array<string> = [
-    "https://img01.yzcdn.cn/vant/apple-1.jpg",
-    "https://img01.yzcdn.cn/vant/apple-2.jpg",
-  ];
-  public swiperCurrent = 0;
 
   public toPath(path: string) {
     this.$router.push(path);
-  }
-  public toggleSwipe(index: number) {
-    this.swiperCurrent = index;
-  }
-  public async getGuideList() {
-    const res = await GET_GUIDE_LIST();
-    if (res && res.code == 200) {
-      //  TODO
-    }
-  }
-  private created() {
-    this.getGuideList();
   }
 }
 </script>
@@ -160,35 +117,6 @@ export default class HomeView extends Vue {
             left: 8px;
           }
         }
-      }
-    }
-    .graceful {
-      background-color: #fff;
-      margin-top: 12px;
-      padding: 8px;
-      border-radius: @radio;
-      .custom-indicator {
-        position: absolute;
-        right: 5px;
-        bottom: 5px;
-        padding: 2px 5px;
-        font-size: 14px;
-        background: rgba(0, 0, 0, 0.31);
-        letter-spacing: 3px;
-      }
-      .tags {
-        margin: 8px 0;
-        .tag {
-          margin-right: 6px;
-        }
-      }
-      .desc {
-        color: rgba(103, 103, 103, 1);
-        letter-spacing: 1px;
-        border-radius: @radio;
-        background-color: #fff;
-        padding: 0 5px 5px;
-        font-size: 15px;
       }
     }
   }

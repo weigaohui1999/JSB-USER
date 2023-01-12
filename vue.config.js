@@ -3,6 +3,7 @@ const path = require("path");
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath: "./",
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "less",
